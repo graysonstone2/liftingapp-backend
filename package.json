@@ -1,0 +1,34 @@
+{
+  "name": "lifting-app-backend",
+  "version": "1.0.0",
+  "description": "Lifting App Backend - TypeScript Lambda with MongoDB",
+  "main": "dist/lambda/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:lambda": "tsc && cp package.json dist/lambda/ && cd dist/lambda && npm install --production",
+    "deploy": "npm run build:lambda && cdk deploy",
+    "cdk": "cdk",
+    "cdk:deploy": "cdk deploy",
+    "cdk:destroy": "cdk destroy",
+    "cdk:diff": "cdk diff"
+  },
+  "keywords": ["aws", "lambda", "typescript", "mongodb", "lifting-app"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-cdk-lib": "^2.0.0",
+    "aws-cdk": "^2.0.0",
+    "construct": "^10.0.0",
+    "mongodb": "^6.0.0",
+    "source-map-support": "^0.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/aws-lambda": "^8.0.0",
+    "ts-node": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
