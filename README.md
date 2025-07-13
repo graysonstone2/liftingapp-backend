@@ -9,6 +9,7 @@ A TypeScript Lambda function with MongoDB integration for the Lifting App.
 - 🔧 AWS CDK for infrastructure as code
 - 🌐 API Gateway for REST endpoints
 - 🔒 Broad permissions for development
+- 🤖 GitHub Actions for automated deployment
 
 ## API Endpoints
 
@@ -45,6 +46,8 @@ npm run build
 
 ## Deployment
 
+### Local Deployment
+
 1. Bootstrap CDK (first time only):
 
 ```bash
@@ -56,6 +59,33 @@ npx cdk bootstrap
 ```bash
 npm run deploy
 ```
+
+### Automated Deployment with GitHub Actions
+
+The repository includes GitHub Actions workflows for automated deployment:
+
+1. **Automatic Deployment** (`deploy.yml`)
+
+   - Triggers on push to `main` branch
+   - Automatically deploys to AWS
+
+2. **Testing & Validation** (`test.yml`)
+
+   - Runs TypeScript checks and CDK validation
+   - Triggers on push and pull requests
+
+3. **Manual Deployment** (`manual-deploy.yml`)
+   - Can be triggered manually from GitHub UI
+   - Allows choosing deployment environment
+
+### Required GitHub Secrets
+
+Set these secrets in your GitHub repository settings:
+
+- `AWS_ACCESS_KEY_ID` - Your AWS access key
+- `AWS_SECRET_ACCESS_KEY` - Your AWS secret key
+- `MONGODB_URI` - Your MongoDB connection string
+- `DATABASE_NAME` - Your database name
 
 ## Development
 
@@ -70,8 +100,51 @@ npm run deploy
 - **API Gateway**: REST API with CORS enabled
 - **CDK**: Infrastructure as code for AWS resources
 - **MongoDB**: External database for data storage
+- **GitHub Actions**: Automated CI/CD pipeline
 
 ## Environment Variables
 
 - `MONGODB_URI`: MongoDB connection string
 - `DATABASE_NAME`: Database name for the application
+
+## GitHub Actions Workflows
+
+### deploy.yml
+
+Automatically deploys on push to main branch:
+
+```yaml
+on:
+  push:
+    branches: [main]
+```
+
+### test.yml
+
+Validates code and CDK configuration:
+
+```yaml
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+```
+
+### manual-deploy.yml
+
+Manual deployment with environment selection:
+
+```yaml
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "production"
+        type: choice
+        options:
+          - production
+          - staging
+```
