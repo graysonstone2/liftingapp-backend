@@ -12,21 +12,28 @@
     "cdk:destroy": "cdk destroy",
     "cdk:diff": "cdk diff"
   },
-  "keywords": ["aws", "lambda", "typescript", "mongodb", "lifting-app"],
+  "keywords": [
+    "aws",
+    "lambda",
+    "typescript",
+    "mongodb",
+    "lifting-app"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-cdk-lib": "^2.0.0",
     "aws-cdk": "^2.0.0",
-    "construct": "^10.0.0",
+    "aws-cdk-lib": "^2.0.0",
+    "constructs": "^10.0.0",
     "mongodb": "^6.0.0",
-    "source-map-support": "^0.5.0"
+    "source-map-support": "^0.5.0",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "@types/node": "^20.0.0",
     "@types/aws-lambda": "^8.0.0",
-    "ts-node": "^10.0.0"
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^5.0.0"
   },
   "engines": {
     "node": ">=18"
